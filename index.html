@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LVLUP</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      color: #1f2937;
+    }
+    header {
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 960px;
+      margin: auto;
+      background-color: #4f46e5;
+      padding: 0.5rem 1rem;
+      flex-wrap: wrap;
+    }
+
+    .user-info {
+      color: white;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 0.4rem 1rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    nav button:hover {
+      background-color: #4338ca;
+    }
+
+    .page {
+      display: none;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .image-row img {
+      width: 220px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .image-row img:hover {
+      transform: scale(1.03);
+    }
+
+    input, textarea {
+      display: block;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 1rem;
+    }
+
+    button.submit {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button.submit:hover {
+      background-color: #4338ca;
+    }
+
+    .course-list li {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-left: 4px solid #6366f1;
+      background: #eef2ff;
+      border-radius: 5px;
+    }
+
+    .course-list a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+
+    .course-list a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin: 1rem 0;
+    }
+
+    .center-text {
+      text-align: center;
+    }
+
+    .cta-button {
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .image-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .tick {
+      color: #10b981;
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>LVLUP</h1>
+  <p>Boost your career with real-world job skills, challenges & mentorship.</p>
+</header>
+
+<nav>
+  <div class="user-info" id="userGreeting"></div>
+  <div class="nav-buttons">
+    <button onclick="showPage('home')">Home</button>
+    <button id="signupBtn" onclick="showPage('signup')">Sign Up</button>
+    <button id="loginBtn" onclick="showPage('login')">Login</button>
+    <button onclick="showPage('courses')">Courses</button>
+    <button onclick="showPage('jobapp')">Job Applications</button>
+    <button onclick="showPage('about')">About Us</button>
+    <button id="logoutBtn" onclick="logoutUser()" style="display:none">Logout</button>
+  </div>
+</nav>
+
+<div id="home" class="page active">
+  <section class="center-text">
+    <h2>Ready for Your First Real Job?</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+      LVLUP is designed specifically for university students and recent graduates who want to build practical, market-ready skills that employers actually care about.
+    </p>
+  </section>
+
+  <!-- Key Features -->
+  <div class="feature-grid">
+    <div class="card">
+      <h3>🎓 Learn by Doing</h3>
+      <p>Interactive courses taught by industry experts. Build real projects you can show off on your resume and portfolio. From coding to marketing, we’ve got you covered.</p>
+    </div>
+    <div class="card">
+      <h3>🤝 Mentorship</h3>
+      <p>Get feedback and guidance from professionals who’ve been where you are — and made it through successfully. Ask questions, get advice, and grow faster.</p>
+    </div>
+    <div class="card">
+      <h3>💼 Career Ready</h3>
+      <p>Learn how to write a killer resume, ace interviews, and use LinkedIn effectively to land your dream job. We’ll guide you every step of the way.</p>
+    </div>
+    <div class="card">
+      <h3>📈 Track Your Progress</h3>
+      <p>Mark each course as completed and track your progress in real-time. Stay motivated and always know where you stand in your journey.</p>
+    </div>
+    <div class="card">
+      <h3>🔍 Get Hired</h3>
+      <p>Once you complete your courses, we help you apply directly to real job listings via LinkedIn. Turn learning into opportunity.</p>
+    </div>
+    <div class="card">
+      <h3>📚 Free Resources</h3>
+      <p>All courses are sourced from top platforms like freeCodeCamp, Coursera, and edX — completely free to access and learn from the best.</p>
+    </div>
+  </div>
+
+  <!-- Image Gallery -->
+  <div class="image-row">
+    <img src="https://codingweek.org/wp-content/uploads/2023/09/chris-ried-ieic5Tq8YMk-unsplash-scaled.jpg" alt="coding" />
+    <img src="https://life.berkeley.edu/wp-content/uploads/2024/04/2019_04_24_UCB_Admissions_day2-12_edited.jpg " alt="students" />
+    <img src="https://imageio.forbes.com/specials-images/imageserve/616b417b794907a4b85f89b3/Colourful-cubes-going-into-a-head-graphic-showing-importance-of-learning-/960x0.jpg?format=jpg&width=960 " alt="learning" />
+  </div>
+
+  <!-- Testimonials -->
+  <section class="center-text" style="margin-top: 3rem;">
+    <h3>What Our Users Say</h3>
+    <p>"LVLUP helped me go from zero to job-ready in just 3 months!" — <strong>Alex, Frontend Developer</strong></p>
+    <p>"The mentorship and project-based learning made all the difference." — <strong>Jasmine, UX Designer</strong></p>
+  </section>
+
+  <!-- CTA -->
+  <section class="center-text" style="margin-top: 3rem;">
+    <h3>Start Your Journey Today</h3>
+    <p>Become job-ready in just a few months — not years.</p>
+    <button onclick="showPage('signup')" class="submit cta-button">Join Now for Free</button>
+  </section>
+</div>
+
+<!-- Sign Up -->
+<div id="signup" class="page">
+  <h2>Sign Up</h2>
+  <form onsubmit="signupUser(event)">
+    <input type="text" id="signupUsername" placeholder="Username" required />
+    <input type="text" id="studentID" placeholder="Student ID" required />
+    <input type="password" id="signupPassword" placeholder="Password" required />
+    <button type="submit" class="submit">Sign Up</button>
+  </form>
+</div>
+
+<!-- Login -->
+<div id="login" class="page">
+  <h2>Login</h2>
+  <form onsubmit="loginUser(event)">
+    <input type="text" id="loginUsername" placeholder="Username" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
+    <button type="submit" class="submit">Login</button>
+  </form>
+</div>
+
+<!-- Courses -->
+<div id="courses" class="page">
+  <h2>Courses</h2>
+  <p style="margin-bottom: 1.5rem;">Click on the course title to access the free resource. Once you've completed it, click the "Mark as Completed" button.</p>
+
+  <ul class="course-list">
+    <!-- Frontend Development -->
+    <li class="card">
+      <h3>🖥️ <a href="https://www.freecodecamp.org/learn/front-end-development-certification/ " target="_blank">Frontend Development</a></h3>
+      <small>Learn HTML, CSS, JavaScript, React & more with freeCodeCamp.</small><br/>
+      <span id="progress-Frontend Development">Status: Not Started</span>
+      <button onclick="markCompleted('Frontend Development')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+
+    <!-- Backend Development -->
+    <li class="card">
+      <h3>⚙️ <a href="https://www.edx.org/learn/backend-development " target="_blank">Backend Development</a></h3>
+      <small>Node.js, Express, APIs, and databases — learn from Microsoft on edX.</small><br/>
+      <span id="progress-Backend Development">Status: Not Started</span>
+      <button onclick="markCompleted('Backend Development')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+
+    <!-- Full Stack Projects -->
+    <li class="card">
+      <h3>🧩 <a href="https://scrimba.com/learn/nextjs " target="_blank">Full Stack Projects</a></h3>
+      <small>Build complete apps from scratch using Next.js or MERN stack.</small><br/>
+      <span id="progress-Full Stack Projects">Status: Not Started</span>
+      <button onclick="markCompleted('Full Stack Projects')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+
+    <!-- Career Readiness -->
+    <li class="card">
+      <h3>💼 <a href="https://www.coursera.org/specializations/career-development " target="_blank">Career Readiness</a></h3>
+      <small>Resume writing, interviews, LinkedIn profile setup — from University of California via Coursera.</small><br/>
+      <span id="progress-Career Readiness">Status: Not Started</span>
+      <button onclick="markCompleted('Career Readiness')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+
+    <!-- Data Science -->
+    <li class="card">
+      <h3>📊 <a href="https://www.coursera.org/learn/data-science " target="_blank">Data Science</a></h3>
+      <small>Intro to Python, data analysis, machine learning — from Johns Hopkins University on Coursera.</small><br/>
+      <span id="progress-Data Science">Status: Not Started</span>
+      <button onclick="markCompleted('Data Science')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+
+    <!-- UX Design -->
+    <li class="card">
+      <h3>🖌️ <a href="https://www.coursera.org/learn/ux-design " target="_blank">UX Design</a></h3>
+      <small>Learn the fundamentals of user experience design and Figma tools.</small><br/>
+      <span id="progress-UX Design">Status: Not Started</span>
+      <button onclick="markCompleted('UX Design')" class="submit" style="margin-top: 0.5rem;">Mark as Completed</button>
+    </li>
+  </ul>
+</div>
+
+<!-- Job Application -->
+<div id="jobapp" class="page">
+  <h2>Job Applications</h2>
+  <p>Track job postings and apply directly from here. Your completed courses will appear below to add to your resume.</p>
+  <div id="completedCoursesList"></div>
+  <br/>
+  <a href="https://www.linkedin.com/jobs/ " target="_blank">
+    <button class="submit">Apply to Jobs on LinkedIn</button>
+  </a>
+</div>
+
+<!-- About Us -->
+<div id="about" class="page">
+  <h2>About Us</h2>
+  <p>LVLUP is dedicated to preparing you for the job market with hands-on experience, mentorship, and a supportive community. We partner with industry leaders through affiliate programs to offer high-quality resources at no cost to you.</p>
+  <p>This site is supported by affiliate partnerships. If you make a purchase through our course links, we may earn a commission — at no extra cost to you.</p>
+</div>
+
+<script>
+  function showPage(pageId) {
+    if (['courses', 'jobapp'].includes(pageId) && !sessionStorage.getItem('loggedInUser')) {
+      alert("You must log in first to access this page.");
+      return showPage('login');
+    }
+
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  function signupUser(event) {
+    event.preventDefault();
+    const username = document.getElementById('signupUsername').value;
+    const studentID = document.getElementById('studentID').value;
+    const password = document.getElementById('signupPassword').value;
+
+    localStorage.setItem(`user_${username}`, JSON.stringify({ password, studentID }));
+    alert('Sign up successful. You can now log in.');
+    showPage('login');
+  }
+
+  function loginUser(event) {
+    event.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    const userData = localStorage.getItem(`user_${username}`);
+
+    if (userData && JSON.parse(userData).password === password) {
+      sessionStorage.setItem('loggedInUser', username);
+      loadCourseProgress(username);
+      updateUI();
+      showPage('home');
+    } else {
+      alert('Invalid credentials.');
+    }
+  }
+
+  function logoutUser() {
+    const user = sessionStorage.getItem('loggedInUser');
+    if (user) {
+      saveCourseProgress(user);
+    }
+
+    sessionStorage.removeItem('loggedInUser');
+    updateUI();
+    showPage('home');
+  }
+
+  function updateUI() {
+    const user = sessionStorage.getItem('loggedInUser');
+    const greeting = document.getElementById('userGreeting');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+
+    if (user) {
+      greeting.textContent = `Welcome, ${user}!`;
+      logoutBtn.style.display = 'inline-block';
+      loginBtn.style.display = 'none';
+      signupBtn.style.display = 'none';
+    } else {
+      greeting.textContent = '';
+      logoutBtn.style.display = 'none';
+      loginBtn.style.display = 'inline-block';
+      signupBtn.style.display = 'inline-block';
+    }
+  }
+
+  function markCompleted(courseName) {
+    const user = sessionStorage.getItem('loggedInUser');
+    if (!user) return alert("Please log in first.");
+
+    const progressKey = `progress_${user}`;
+    let progress = JSON.parse(localStorage.getItem(progressKey)) || {};
+    progress[courseName] = "Completed";
+    localStorage.setItem(progressKey, JSON.stringify(progress));
+    document.getElementById(`progress-${courseName}`).innerHTML = `<span class="tick">✅ Completed</span>`;
+    updateCompletedCoursesList();
+  }
+
+  function loadCourseProgress(user) {
+    const progressKey = `progress_${user}`;
+    const progress = JSON.parse(localStorage.getItem(progressKey)) || {};
+    for (let course in progress) {
+      const span = document.getElementById(`progress-${course}`);
+      if (span) {
+        span.innerHTML = progress[course] === "Completed" ? `<span class="tick">✅ Completed</span>` : `Status: ${progress[course]}`;
+      }
+    }
+    updateCompletedCoursesList();
+  }
+
+  function saveCourseProgress(user) {
+    const progressKey = `progress_${user}`;
+    const progress = JSON.parse(localStorage.getItem(progressKey)) || {};
+    localStorage.setItem(progressKey, JSON.stringify(progress));
+  }
+
+  function updateCompletedCoursesList() {
+    const user = sessionStorage.getItem('loggedInUser');
+    if (!user) return;
+    const progress = JSON.parse(localStorage.getItem(`progress_${user}`)) || {};
+    const list = document.getElementById('completedCoursesList');
+    list.innerHTML = '<h4>Your Completed Courses:</h4>';
+    Object.keys(progress).forEach(course => {
+      const item = document.createElement('p');
+      item.textContent = `✅ ${course}`;
+      list.appendChild(item);
+    });
+  }
+
+  window.onload = () => {
+    updateUI();
+    const user = sessionStorage.getItem('loggedInUser');
+    if (user) {
+      loadCourseProgress(user);
+    }
+  };
+</script>
+
+</body>
+</html>
